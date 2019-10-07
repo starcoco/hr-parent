@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dingdang.login.mapper.HrManagerMapper">
+
+    <resultMap id="BaseResultMap" type="com.dingdang.login.pojo.HrManager" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="account" property="account" jdbcType="VARCHAR" />
+        <result column="password" property="password" jdbcType="VARCHAR" />
+        <result column="lever" property="lever" jdbcType="CHAR" />
+        <result column="logintime" property="logintime" jdbcType="DATE" />
+        <result column="mark" property="mark" jdbcType="VARCHAR" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+     id,account, password, lever, logintime, mark
+  </sql>
+<select id="dologin" parameterType="String" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" />from hr_manager where account=#{account} and password=#{pwd}
+</select>
+    <insert id="addManager" parameterType="com.dingdang.login.pojo.HrManager">
+        insert into hr_manager (account, password, lever, logintime, mark) values (#{account,jdbcType=VARCHAR},#{password},#{lever},#{logintime},#{mark})
+    </insert>
+    <delete id="deleteManager" parameterType="int">
+        delete from hr_manager where id=#{id}
+    </delete>
+    <update id="updateManager" parameterType="com.dingdang.login.pojo.HrManager">
+        update hr_manager set password=#{password},lever=#{lever} where account=#{account}
+    </update>
+    <select id="getByAccount" parameterType="String" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List"/> from hr_manager where account=#{account}
+    </select>
+    <select id="getAll" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List"/> from hr_manager
+    </select>
+</mapper>

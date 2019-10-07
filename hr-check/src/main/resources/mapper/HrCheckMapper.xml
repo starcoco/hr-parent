@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dingdang.check.mapper.HrCheckMapper" >
+  <resultMap id="BaseResultMap" type="com.dingdang.check.pojo.HrCheck" >
+    <id column="ch_id" property="chId" jdbcType="INTEGER" />
+    <result column="ch_date" property="chDate" jdbcType="VARCHAR" />
+    <result column="ch_em_account" property="chEmAccount" jdbcType="VARCHAR" />
+    <result column="ch_intime" property="chIntime" jdbcType="TIME" />
+    <result column="ch_outtime" property="chOuttime" jdbcType="TIME" />
+    <result column="ch_ischeck" property="chIscheck" jdbcType="VARCHAR" />
+    <result column="ch_dz" property="chDz" jdbcType="VARCHAR" />
+  </resultMap>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select ch_id,ch_date,ch_em_account,ch_intime,ch_outtime,ch_ischeck,ch_dz
+    from hr_check
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from hr_check
+    where ch_id = #{chId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.dingdang.check.pojo.HrCheck" >
+    insert into hr_check (ch_date, ch_em_account,
+      ch_intime, ch_outtime, ch_ischeck,
+      ch_dz)
+    values ( #{chDate,jdbcType=VARCHAR}, #{chEmAccount,jdbcType=VARCHAR},
+      #{chIntime,jdbcType=TIME}, #{chOuttime,jdbcType=TIME}, #{chIscheck,jdbcType=VARCHAR},
+      #{chDz,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.dingdang.check.pojo.HrCheck" >
+    update hr_check
+    set ch_date = #{chDate,jdbcType=VARCHAR},
+      ch_em_account = #{chEmAccount,jdbcType=VARCHAR},
+      ch_intime = #{chIntime,jdbcType=TIME},
+      ch_outtime = #{chOuttime,jdbcType=TIME},
+      ch_ischeck = #{chIscheck,jdbcType=VARCHAR},
+      ch_dz = #{chDz,jdbcType=VARCHAR}
+    where ch_id = #{chId,jdbcType=INTEGER}
+  </update>
+</mapper>

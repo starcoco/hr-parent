@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dingdang.employee.mapper.HrEmployeeMapper">
+    <resultMap id="BaseResultMap" type="com.dingdang.employee.pojo.HrEmployee">
+        <id column="em_id" property="emId" jdbcType="INTEGER"/>
+        <result column="em_accout" property="emAccout" jdbcType="VARCHAR"/>
+        <result column="em_startime" property="emStartime" jdbcType="VARCHAR"/>
+        <result column="em_deptment_id" property="emDeptmentId" jdbcType="INTEGER"/>
+        <result column="em_typework" property="emTypework" jdbcType="VARCHAR"/>
+        <result column="em_createid" property="emCreateid" jdbcType="INTEGER"/>
+        <result column="em_img" property="emImg" jdbcType="VARCHAR"/>
+        <result column="em_mark" property="emMark" jdbcType="VARCHAR"/>
+        <collection property="embase" ofType="com.dingdang.employee.pojo.HrBaseinfo">
+            <id column="ba_id" property="baId" jdbcType="INTEGER"/>
+            <result column="ba_name" property="baName" jdbcType="CHAR"/>
+            <result column="ba_sex" property="baSex" jdbcType="CHAR"/>
+            <result column="ba_age" property="baAge" jdbcType="INTEGER"/>
+            <result column="ba_IDcard" property="baIdcard" jdbcType="VARCHAR"/>
+            <result column="ba_birth" property="baBirth" jdbcType="VARCHAR"/>
+            <result column="ba_nation" property="baNation" jdbcType="VARCHAR"/>
+            <result column="ba_marriage" property="baMarriage" jdbcType="VARCHAR"/>
+            <result column="ba_visage" property="baVisage" jdbcType="VARCHAR"/>
+            <result column="ba_home" property="baHome" jdbcType="VARCHAR"/>
+            <result column="ba_tel" property="baTel" jdbcType="VARCHAR"/>
+            <result column="ba_address" property="baAddress" jdbcType="VARCHAR"/>
+            <result column="ba_culture" property="baCulture" jdbcType="CHAR"/>
+            <result column="em_isstock" property="emIsstock" jdbcType="VARCHAR"/>
+            <result column="em_bz" property="emBz" jdbcType="VARCHAR"/>
+        </collection>
+        <collection property="emDept" ofType="com.dingdang.employee.pojo.HrDepartment">
+            <id column="dt_id" property="dtId" jdbcType="INTEGER" />
+            <result column="dt_name" property="dtName" jdbcType="CHAR" />
+            <result column="dt_createTime" property="dtCreatetime" jdbcType="VARCHAR" />
+            <result column="dt_bz" property="dtBz" jdbcType="VARCHAR" />
+            <result column="dt_ex" property="dtEx" jdbcType="VARCHAR" />
+        </collection>
+    </resultMap>
+    <resultMap id="DeptResultMapper" type="com.dingdang.employee.pojo.HrDepartment">
+        <id column="dt_id" property="dtId" jdbcType="INTEGER" />
+        <result column="dt_name" property="dtName" jdbcType="CHAR" />
+        <result column="dt_createTime" property="dtCreatetime" jdbcType="VARCHAR" />
+        <result column="dt_bz" property="dtBz" jdbcType="VARCHAR" />
+        <result column="dt_ex" property="dtEx" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+    em_id, em_accout,em_startime,ba_name,ba_IDcard,ba_birth,ba_marriage,ba_address,ba_sex,ba_age,ba_nation,ba_visage,ba_culture,ba_tel,ba_home,em_deptment_id, em_typework, em_createid,em_img
+  </sql>
+    <sql id="Three_Column_List">
+    em_id, em_accout,em_startime,ba_name,ba_IDcard,ba_birth,ba_marriage,ba_address,ba_sex,ba_age,ba_nation,ba_visage,ba_culture,ba_tel,ba_home,em_deptment_id, em_typework, em_createid,em_img,em_mark,dt_name
+  </sql>
+    <select id="FindByDeptment" parameterType="int" resultMap="BaseResultMap">
+        select
+        <include refid="Three_Column_List"/>
+        from hr_employee,hr_baseinfo,hr_department
+        where em_deptment_id=#{deptid} and ba_id=em_id and dt_id=em_deptment_id
+    </select>
+    <select id="findById" parameterType="int" resultMap="BaseResultMap">
+        select
+        <include refid="Three_Column_List"/>
+        from hr_employee,hr_baseinfo,hr_department
+        where em_id=#{emid} and ba_id=em_id and em_deptment_id=dt_id
+    </select>
+    <delete id="deleteById" parameterType="int">
+        delete from hr_employee where em_id=#{emid};
+        delete from hr_baseinfo where ba_id=#{emid};
+    </delete>
+    <update id="updateByType" parameterType="String">
+        update hr_employee set em_typework=#{type} where em_typework=#{account}
+    </update>
+    <update id="updateById" parameterType="com.dingdang.employee.pojo.HrEmployee">
+        update hr_employee
+        <set > <if test="hrEmployee.emDeptmentId != null" >em_deptment_id=#{hrEmployee.emDeptmentId},</if>
+        <if test="hrEmployee.emTypework != null" >em_typework=#{hrEmployee.emTypework},</if>
+        <if test="hrEmployee.emMark != null" >em_mark=#{hrEmployee.emMark}</if>
+        </set>
+        where em_id=#{hrEmployee.emId};
+    </update>
+    <sql id="Base_Dept_List">
+        dt_id,dt_name
+    </sql>
+    <select id="findDept" resultMap="DeptResultMapper">
+        select <include refid="Base_Dept_List"/>
+        from hr_department
+    </select>
+    <select id="findByAccount" parameterType="String" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List"/> from hr_employee,hr_baseinfo where em_accout=#{account} and ba_id=em_id
+    </select>
+    <select id="findByMark" parameterType="String" resultMap="BaseResultMap">
+        select
+        <include refid="Three_Column_List"/>
+        from hr_employee,hr_baseinfo,hr_department
+        where em_mark=#{emMark} and ba_id=em_id and dt_id=em_deptment_id
+    </select>
+</mapper>

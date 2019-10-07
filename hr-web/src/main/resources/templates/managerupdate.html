@@ -1,0 +1,210 @@
+<!-- AUI Framework -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="author" content="order by dede58.com"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title>修改个人资料</title>
+    <meta name="description" content=""/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+
+    <!-- Favicons -->
+
+    <link rel="apple-touch-icon-precomposed" sizes="144x144"
+          href="assets/images/icons/apple-touch-icon-144-precomposed.png"/>
+    <link rel="apple-touch-icon-precomposed" sizes="114x114"
+          href="assets/images/icons/apple-touch-icon-114-precomposed.png"/>
+    <link rel="apple-touch-icon-precomposed" sizes="72x72"
+          href="assets/images/icons/apple-touch-icon-72-precomposed.png"/>
+    <link rel="apple-touch-icon-precomposed" href="assets/images/icons/apple-touch-icon-57-precomposed.png"/>
+    <link rel="shortcut icon" href="assets/images/icons/favicon.png"/>
+
+    <script src="/js/jquery-1.12.4.js"></script>
+    <!--[if lt IE 9]>
+    <script src="assets/js/minified/core/html5shiv.min.js"></script>
+    <script src="assets/js/minified/core/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Fides Admin CSS Core -->
+
+    <link rel="stylesheet" type="text/css" href="assets/css/minified/aui-production.min.css"/>
+
+    <!-- Theme UI -->
+
+    <link id="layout-theme" rel="stylesheet" type="text/css"
+          href="assets/themes/minified/fides/color-schemes/dark-blue.min.css"/>
+
+    <!-- Fides Admin Responsive -->
+
+    <link rel="stylesheet" type="text/css" href="assets/themes/minified/fides/common.min.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/themes/minified/fides/responsive.min.css"/>
+
+    <!-- Fides Admin JS -->
+
+    <script type="text/javascript" src="assets/js/minified/aui-production.min.js"></script>
+
+    <script>
+        jQuery(window).load(
+            function () {
+
+                var wait_loading = window.setTimeout(function () {
+                        $('#loading').slideUp('fast');
+                        jQuery('body').css('overflow', 'auto');
+                    }, 1000
+                );
+
+            });
+
+    </script>
+
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+</head>
+<body style="overflow: hidden;">
+<div th:replace="head::head"></div>
+
+<div th:replace="left::left"></div>
+
+<div id="page-content-wrapper" style="top: 53px">
+    <div id="page-title">
+
+        <h3>
+            编辑个人资料
+            <small>
+
+            </small>
+        </h3>
+    </div><!-- #page-title -->
+    <div id="page-content">
+
+
+        <h3>修改密码</h3>
+        <p class="font-gray-dark">
+            注意！工号为员工在岗唯一凭证，不可更改。所有用户只能更改密码，初始密码为123456
+        </p>
+
+        <div class="example-box">
+            <div class="example-code">
+
+                <form id="demo-form-2" action="/updateManager" class="col-md-10 center-margin" method=""/>
+                <div class="form-row">
+                    <div class="form-label col-md-2">
+                        <label for="account">
+                            工号:
+                        </label>
+                    </div>
+                    <div class="form-input col-md-10">
+                        <input type="text" disabled="disabled" th:value="${session.emp.emAccout}"
+                               class="parsley-validated"/>
+                        <input id="account" type="hidden" name="account" th:value="${session.emp.emAccout}"
+                               class="parsley-validated"/>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-label col-md-2">
+                        <label for="">
+                            请输入旧密码:
+                            <span class="required">*</span>
+                        </label>
+                    </div>
+                    <div class="form-input col-md-10">
+                        <input id="pwdd" type="password" name="pwd" data-type="text" data-trigger="change"
+                               required="true" class="parsley-validated"/>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-label col-md-2">
+                        <label for="password">
+                            请输入新密码:
+                            <span class="required">*</span>
+                        </label>
+                    </div>
+                    <div class="form-input col-md-10">
+                        <input id="password" type="password" name="password" data-type="text" data-trigger="change"
+                               required="true" class="parsley-validated"/>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-label col-md-2">
+                        <label for="repassword">
+                            再次输入新密码:
+                            <span class="required">*</span>
+                        </label>
+                    </div>
+                    <div class="form-input col-md-10">
+                        <input id="repassword" name="repassword " type="password" data-type="text" data-trigger="change"
+                               required="true" class="parsley-validated"/>
+                    </div>
+                </div>
+                <div class="divider"></div>
+                <div class="form-row">
+                    <input type="hidden" name="superhidden" id="superhidden"/>
+                    <div class="form-input col-md-10 col-md-offset-2">
+                        <button class="btn medium primary-bg radius-all-4 " onclick="check()" type="button"
+                                id="demo-form-2-valid">
+                            提交
+                        </button>
+                    </div>
+                </div>
+
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<ul class="noty-wrapper i-am-new" id="noty_bottom" style="display: none">
+    <li class="bg-red" style="cursor: pointer;">
+        <div class="noty_bar" id="noty_1513473613364019200">
+            <div class="noty_message"><span class="noty_text"><i class="glyph-icon icon-cog mrg5R"></i><font id="msg"
+                                                                                                             style="vertical-align: inherit;"><font
+                    style="vertical-align: inherit;"></font></font></span></div>
+        </div>
+    </li>
+</ul>
+
+<script>
+    function check() {
+        var pwd = $("#pwdd").val();
+        var password = $("#password").val();
+        var repassword = $("#repassword").val();
+        $.post("/password", {'pwd': pwd, 'password': password, 'repassword': repassword}, function (data) {
+            if (data.code == 200) {
+
+                if (password === "") {
+                    $("#msg").text("输入新密码为空！")
+                    $("#noty_bottom").css("display", "block");
+                } else if(password !== repassword)
+                {
+                    $("#msg").text("两次密码输入不一致！")
+                    $("#noty_bottom").css("display", "block");
+                }else {
+                    $("#demo-form-2").submit();
+                }
+
+            } else {
+                $("#msg").text(data.msg)
+                $("#noty_bottom").css("display", "block");
+            }
+        });
+
+
+    }
+
+    function close() {
+        $("#noty_bottom").css("display", "none");
+    }
+
+    $(function () {
+        setInterval(close(), 500)
+        $("#noty_bottom").click(function () {
+            $("#noty_bottom").css("display", "none");
+        })
+
+    });
+</script>
+</body>
+</html>

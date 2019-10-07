@@ -1,0 +1,175 @@
+<!-- AUI Framework -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+
+    <meta charset="utf-8"/>
+    <meta name="author" content="order by dede58.com"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title>人力资源管理系统</title>
+    <meta name="description" content=""/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+
+    <!-- Favicons -->
+
+    <link rel="apple-touch-icon-precomposed" sizes="144x144"
+          href="assets/images/icons/apple-touch-icon-144-precomposed.png"/>
+    <link rel="apple-touch-icon-precomposed" sizes="114x114"
+          href="assets/images/icons/apple-touch-icon-114-precomposed.png"/>
+    <link rel="apple-touch-icon-precomposed" sizes="72x72"
+          href="assets/images/icons/apple-touch-icon-72-precomposed.png"/>
+    <link rel="apple-touch-icon-precomposed" href="assets/images/icons/apple-touch-icon-57-precomposed.png"/>
+    <link rel="shortcut icon" href="assets/images/icons/favicon.png"/>
+
+    <!--[if lt IE 9]>
+    <script src="assets/js/minified/core/html5shiv.min.js"></script>
+    <script src="assets/js/minified/core/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Fides Admin CSS Core -->
+
+    <link rel="stylesheet" type="text/css" href="assets/css/minified/aui-production.min.css"/>
+
+    <!-- Theme UI -->
+
+    <link id="layout-theme" rel="stylesheet" type="text/css"
+          href="assets/themes/minified/fides/color-schemes/dark-blue.min.css"/>
+
+    <!-- Fides Admin Responsive -->
+
+    <link rel="stylesheet" type="text/css" href="assets/themes/minified/fides/common.min.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/themes/minified/fides/responsive.min.css"/>
+
+    <!-- Fides Admin JS -->
+
+    <script type="text/javascript" src="assets/js/minified/aui-production.min.js"></script>
+
+    <script>
+        jQuery(window).load(
+            function () {
+
+                var wait_loading = window.setTimeout(function () {
+                        $('#loading').slideUp('fast');
+                        jQuery('body').css('overflow', 'auto');
+                    }, 1000
+                );
+
+            });
+
+    </script>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+</head>
+<body style="overflow: hidden;">
+<div th:replace="head::head"></div>
+
+<div th:replace="left::left"></div>
+<div id="page-content-wrapper" style="top: 53px">
+    <div id="page-title">
+
+        <h3>
+            薪资及个税
+            <small>
+                各种薪资统计图及个税算法
+            </small>
+        </h3>
+    </div>
+<div class="col-md-4">
+
+    <h5 class="text-transform-upr text-center mrg0T mrg15B font-gray font-size-14"><font
+            style="vertical-align: inherit;"><font style="vertical-align: inherit;">当下工资分布情况</font></font></h5>
+
+    <div class="content-box">
+        <div id="color-bar" style="position: relative;">
+            <svg height="342" version="1.1" width="255" xmlns="http://www.w3.org/2000/svg"
+                 style="overflow: hidden; position: relative;">
+                <desc style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">Created with Raphaï¿½l 2.1.0</desc>
+                <defs style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></defs>
+                <text x="19.71875" y="305" text-anchor="end" font="10px &quot;Arial&quot;" stroke="none" fill="#888888"
+                      style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: end; font: 12px sans-serif;"
+                      font-size="12px" font-family="sans-serif" font-weight="normal">
+                    <tspan dy="4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">0</tspan>
+                </text>
+                <path fill="none" stroke="#aaaaaa" d="M32.21875,305H230" stroke-width="0.5"
+                      style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path>
+                <text x="19.71875" y="235" text-anchor="end" font="10px &quot;Arial&quot;" stroke="none" fill="#888888"
+                      style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: end; font: 12px sans-serif;"
+                      font-size="12px" font-family="sans-serif" font-weight="normal">
+                    <tspan dy="4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">2</tspan>
+                </text>
+                <path fill="none" stroke="#aaaaaa" d="M32.21875,235H230" stroke-width="0.5"
+                      style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path>
+                <text x="19.71875" y="165" text-anchor="end" font="10px &quot;Arial&quot;" stroke="none" fill="#888888"
+                      style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: end; font: 12px sans-serif;"
+                      font-size="12px" font-family="sans-serif" font-weight="normal">
+                    <tspan dy="4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">4</tspan>
+                </text>
+                <path fill="none" stroke="#aaaaaa" d="M32.21875,165H230" stroke-width="0.5"
+                      style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path>
+                <text x="19.71875" y="95" text-anchor="end" font="10px &quot;Arial&quot;" stroke="none" fill="#888888"
+                      style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: end; font: 12px sans-serif;"
+                      font-size="12px" font-family="sans-serif" font-weight="normal">
+                    <tspan dy="4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">6</tspan>
+                </text>
+                <path fill="none" stroke="#aaaaaa" d="M32.21875,95H230" stroke-width="0.5"
+                      style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path>
+                <text x="19.71875" y="25" text-anchor="end" font="10px &quot;Arial&quot;" stroke="none" fill="#888888"
+                      style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: end; font: 12px sans-serif;"
+                      font-size="12px" font-family="sans-serif" font-weight="normal">
+                    <tspan dy="4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">8</tspan>
+                </text>
+                <path fill="none" stroke="#aaaaaa" d="M32.21875,25H230" stroke-width="0.5"
+                      style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path>
+                <text x="219.01215277777777" y="317.5" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none"
+                      fill="#888888"
+                      style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font: 12px sans-serif;"
+                      font-size="12px" font-family="sans-serif" font-weight="normal" transform="matrix(1,0,0,1,0,8.5)">
+                    <tspan dy="4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">2013 Q1</tspan>
+                </text>
+                <text x="109.13368055555556" y="317.5" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none"
+                      fill="#888888"
+                      style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font: 12px sans-serif;"
+                      font-size="12px" font-family="sans-serif" font-weight="normal" transform="matrix(1,0,0,1,0,8.5)">
+                    <tspan dy="4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">2011 Q4</tspan>
+                </text>
+                <rect x="34.96571180555556" y="305" width="16.481770833333332" height="0" r="0" rx="0" ry="0"
+                      fill="#009b16" stroke="#000" stroke-width="0"
+                      style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect>
+                <rect x="56.94140625" y="270" width="16.481770833333332" height="35" r="0" rx="0" ry="0" fill="#209b16"
+                      stroke="#000" stroke-width="0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect>
+                <rect x="78.91710069444444" y="235" width="16.481770833333332" height="70" r="0" rx="0" ry="0"
+                      fill="#409b16" stroke="#000" stroke-width="0"
+                      style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect>
+                <rect x="100.89279513888889" y="200" width="16.481770833333332" height="105" r="0" rx="0" ry="0"
+                      fill="#609b16" stroke="#000" stroke-width="0"
+                      style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect>
+                <rect x="122.86848958333333" y="165" width="16.481770833333332" height="140" r="0" rx="0" ry="0"
+                      fill="#809b16" stroke="#000" stroke-width="0"
+                      style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect>
+                <rect x="144.84418402777777" y="130" width="16.481770833333332" height="175" r="0" rx="0" ry="0"
+                      fill="#a09b16" stroke="#000" stroke-width="0"
+                      style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect>
+                <rect x="166.8198784722222" y="95" width="16.481770833333332" height="210" r="0" rx="0" ry="0"
+                      fill="#c09b16" stroke="#000" stroke-width="0"
+                      style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect>
+                <rect x="188.79557291666663" y="60" width="16.481770833333332" height="245" r="0" rx="0" ry="0"
+                      fill="#e09b16" stroke="#000" stroke-width="0"
+                      style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect>
+                <rect x="210.7712673611111" y="25" width="16.481770833333332" height="280" r="0" rx="0" ry="0"
+                      fill="#ff9b16" stroke="#000" stroke-width="0"
+                      style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect>
+            </svg>
+            <div class="morris-hover morris-default-style" style="left: 188.512px; top: 145px;">
+                <div class="morris-hover-row-label"><font style="vertical-align: inherit;"><font
+                        style="vertical-align: inherit;">2013年第一季度</font></font></div>
+                <div class="morris-hover-point" style="color: #000"><font style="vertical-align: inherit;"><font
+                        style="vertical-align: inherit;">
+                    Y：8
+                </font></font></div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</body>
+</html>

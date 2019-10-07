@@ -1,0 +1,159 @@
+<!-- AUI Framework -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+
+    <meta charset="utf-8"/>
+    <meta name="author" content="order by dede58.com"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title>管理员详情</title>
+    <meta name="description" content=""/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+
+    <!-- Favicons -->
+
+    <link rel="apple-touch-icon-precomposed" sizes="144x144"
+          href="assets/images/icons/apple-touch-icon-144-precomposed.png"/>
+    <link rel="apple-touch-icon-precomposed" sizes="114x114"
+          href="assets/images/icons/apple-touch-icon-114-precomposed.png"/>
+    <link rel="apple-touch-icon-precomposed" sizes="72x72"
+          href="assets/images/icons/apple-touch-icon-72-precomposed.png"/>
+    <link rel="apple-touch-icon-precomposed" href="assets/images/icons/apple-touch-icon-57-precomposed.png"/>
+    <link rel="shortcut icon" href="assets/images/icons/favicon.png"/>
+    <script src="/js/jquery-1.12.4.js"></script>
+    <!--[if lt IE 9]>
+    <script src="assets/js/minified/core/html5shiv.min.js"></script>
+    <script src="assets/js/minified/core/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Fides Admin CSS Core -->
+
+    <link rel="stylesheet" type="text/css" href="assets/css/minified/aui-production.min.css"/>
+
+    <!-- Theme UI -->
+
+    <link id="layout-theme" rel="stylesheet" type="text/css"
+          href="assets/themes/minified/fides/color-schemes/dark-blue.min.css"/>
+
+    <!-- Fides Admin Responsive -->
+
+    <link rel="stylesheet" type="text/css" href="assets/themes/minified/fides/common.min.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/themes/minified/fides/responsive.min.css"/>
+
+    <!-- Fides Admin JS -->
+
+    <script type="text/javascript" src="assets/js/minified/aui-production.min.js"></script>
+
+    <script>
+        jQuery(window).load(
+            function () {
+
+                var wait_loading = window.setTimeout(function () {
+                        $('#loading').slideUp('fast');
+                        jQuery('body').css('overflow', 'auto');
+                    }, 1000
+                );
+
+            });
+
+    </script>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+</head>
+<body style="overflow: hidden;">
+<div th:replace="head::head"></div>
+
+<div th:replace="left::left"></div>
+<div id="page-content-wrapper" style="top: 53px">
+    <div id="page-title">
+
+        <h3>
+            编辑管理员信息
+        </h3>
+    </div>
+        <div id="page-content">
+            <h3>
+                管理员详情
+            </h3>
+            <p class="font-gray-dark">
+                可对管理员等级做修改，或删除管理员
+            </p>
+
+            <div class="example-box">
+                <div class="example-code">
+
+                    <table class="table table-hover text-center">
+                        <thead>
+                        <tr>
+                            <th class="text-center"></th>
+                            <th>姓名</th>
+                            <th>等级</th>
+                            <th class="text-center">操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="list:${list}">
+                            <td th:text="${list.account}"></td>
+                            <td class="font-bold text-left" th:text="${list.mark}"></td>
+                            <td>
+                                <div class="font-bold text-left" th:text="${list.lever}"></div>
+                            </td>
+                            <td>
+                                <div class="dropdown">
+                                    <a href="javascript:;" title="" class="btn medium bg-blue" data-toggle="dropdown">
+                                <span class="button-content">
+                                    <i class="glyph-icon font-size-11 icon-cog"></i>
+                                    <i class="glyph-icon font-size-11 icon-chevron-down"></i>
+                                </span>
+                                    </a>
+                                    <ul class="dropdown-menu float-right">
+
+                                        <li>
+                                            <a href="" title="">
+                                                <i class="glyph-icon icon-edit mrg5R"></i>
+                                                编辑
+                                            </a>
+                                        </li>
+                                        <li class="divider"></li>
+                                        <li>
+                                            <a th:href="@{'/deletemanager?id='+${list.Id}}" class="font-red" title="">
+                                                <i class="glyph-icon icon-remove mrg5R"></i>
+                                                删除
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+
+                </div>
+
+            </div>
+        </div>
+</div>
+
+<div id="motai" class="ui-dialog ui-widget ui-widget-content ui-corner-all ui-front ui-draggable ui-resizable"
+     tabindex="-1" role="dialog"
+     style="position: absolute; height: auto; width: 400px; top: 240px; left: 426px; display: none;">
+    <div class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix"><span id="ui-id-9"
+                                                                                            class="ui-dialog-title"> <i
+            class="glyph-icon icon-compass"></i></span>
+        <button class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only ui-dialog-titlebar-close"
+                id="close"><span
+                class="ui-button-icon-primary ui-icon ui-icon-closethick"></span><span class="ui-button-text">关</span>
+        </button>
+    </div>
+    <div class="hide ui-dialog-content ui-widget-content" id="white-modal-60"
+         style="display: block; width: auto; min-height: 88px; max-height: none; height: auto;">
+        <div class="pad10A" style="    text-align: center;
+"><font style="vertical-align: inherit;" id="msg">
+
+        </font></div>
+    </div>
+</div>
+
+</body>
+</html>

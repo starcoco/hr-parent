@@ -1,0 +1,174 @@
+<!-- AUI Framework -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+
+    <meta charset="utf-8"/>
+    <meta name="author" content="order by dede58.com"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title>人力资源管理系统</title>
+    <meta name="description" content=""/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+
+    <!-- Favicons -->
+
+    <link rel="apple-touch-icon-precomposed" sizes="144x144"
+          href="assets/images/icons/apple-touch-icon-144-precomposed.png"/>
+    <link rel="apple-touch-icon-precomposed" sizes="114x114"
+          href="assets/images/icons/apple-touch-icon-114-precomposed.png"/>
+    <link rel="apple-touch-icon-precomposed" sizes="72x72"
+          href="assets/images/icons/apple-touch-icon-72-precomposed.png"/>
+    <link rel="apple-touch-icon-precomposed" href="assets/images/icons/apple-touch-icon-57-precomposed.png"/>
+    <link rel="shortcut icon" href="assets/images/icons/favicon.png"/>
+
+    <!--[if lt IE 9]>
+    <script src="assets/js/minified/core/html5shiv.min.js"></script>
+    <script src="assets/js/minified/core/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Fides Admin CSS Core -->
+
+    <link rel="stylesheet" type="text/css" href="assets/css/minified/aui-production.min.css"/>
+
+    <!-- Theme UI -->
+
+    <link id="layout-theme" rel="stylesheet" type="text/css"
+          href="assets/themes/minified/fides/color-schemes/dark-blue.min.css"/>
+
+    <!-- Fides Admin Responsive -->
+
+    <link rel="stylesheet" type="text/css" href="assets/themes/minified/fides/common.min.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/themes/minified/fides/responsive.min.css"/>
+
+    <!-- Fides Admin JS -->
+
+    <script type="text/javascript" src="assets/js/minified/aui-production.min.js"></script>
+
+    <script>
+        jQuery(window).load(
+            function () {
+
+                var wait_loading = window.setTimeout(function () {
+                        $('#loading').slideUp('fast');
+                        jQuery('body').css('overflow', 'auto');
+                    }, 1000
+                );
+
+            });
+
+    </script>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+</head>
+<body style="overflow: hidden;">
+<div th:replace="head::head"></div>
+
+<div th:replace="left::left"></div>
+<div id="page-content-wrapper" style="top: 53px">
+    <div id="page-title">
+
+        <h3>
+            更改工资项
+            <small>
+                可修改员工部分工资款项
+            </small>
+        </h3>
+    </div>
+
+    <form method="post" class="col-md-6 form-label-right center-margin" action="/updatePay">
+        <input type="text" name="payId" th:value="${hrpay.payId}" style="display: none">
+        <div class="form-row">
+            <div class="form-label col-md-4">
+                <label for="account">
+                    员工工号：
+                </label>
+            </div>
+            <div class="form-input col-md-5 ">
+                <input type="text" name="payAccount" id="account" th:value="${hrpay.payAccount}"
+                       disabled="disabled">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-label col-md-4">
+                <label for="account">
+                    员工姓名：
+                </label>
+            </div>
+            <div class="form-input col-md-5 ">
+                <input type="text" name="payEmname" id="name" th:value="${hrpay.payEmname}" disabled="disabled">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-label col-md-4">
+                <label for="account">
+                    基本工资：
+                </label>
+            </div>
+            <div class="form-input col-md-5 ">
+                <input type="text" name="payBasemoney" id="basemoney" th:value="${hrpay.payBasemoney}">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-label col-md-4">
+                <label for="account">
+                    加班时间：
+                </label>
+            </div>
+            <div class="form-input col-md-5 ">
+                <input type="text" name="payOvertime" id="payOvertime" th:value="${hrpay.payOvertime}" style="width: 130px;"><span style="margin-left: 10px">天</span>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-label col-md-4">
+                <label for="account">
+                    奖金：
+                </label>
+            </div>
+            <div class="form-input col-md-5 ">
+                <input type="text" name="payMore" id="payMore" th:value="${hrpay.payMore}">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-label col-md-4">
+                <label for="account">
+                    五险一金代扣：
+                </label>
+            </div>
+            <div class="form-input col-md-5 ">
+                <input type="text" name="payLbmoney" id="payLbmoney" th:value="${hrpay.payLbmoney}">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-label col-md-4">
+                <label for="account">
+                    其他扣除费用：
+                </label>
+            </div>
+            <div class="form-input col-md-5 ">
+                <input type="text" name="payFulimoney" id="payFulimoney" th:value="${hrpay.payFulimoney}">
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-label col-md-4">
+                <label for="account">
+                    备注：
+                </label>
+            </div>
+            <div class="form-input col-md-5 ">
+                <input type="text" name="payMark" id="payMark" th:value="${hrpay.payMark}">
+            </div>
+        </div>
+        <div class="form-row" style="margin-left: 120px">
+            <button type="submit" class="btn primary-bg medium">
+                <span class="button-content"><font style="vertical-align: inherit;"><font
+                        style="vertical-align: inherit;">提交</font></font></span>
+            </button>
+            <a  class="btn ui-state-default medium" href="javascript:history.go(-1)">
+                <span class="button-content">取消</span>
+            </a>
+        </div>
+    </form>
+</div>
+</body>
+</html>

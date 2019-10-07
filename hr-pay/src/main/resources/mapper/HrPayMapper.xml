@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dingdang.pay.mapper.HrPayMapper">
+    <resultMap id="BaseResultMap" type="com.dingdang.pay.pojo.HrPay">
+        <id column="pay_id" property="payId" jdbcType="INTEGER"/>
+        <result column="pay_account" property="payAccount" jdbcType="VARCHAR"/>
+        <result column="pay_emName" property="payEmname" jdbcType="VARCHAR"/>
+        <result column="pay_dept_id" property="payDeptId" jdbcType="VARCHAR"/>
+        <result column="pay_basemoney" property="payBasemoney" jdbcType="INTEGER"/>
+        <result column="pay_overtime" property="payOvertime" jdbcType="INTEGER"/>
+        <result column="pay_more" property="payMore" jdbcType="INTEGER"/>
+        <result column="pay_check" property="payCheck" jdbcType="INTEGER"/>
+        <result column="pay_absent" property="payAbsent" jdbcType="REAL"/>
+        <result column="pay_safety" property="paySafety" jdbcType="REAL"/>
+        <result column="pay_point" property="payPoint" jdbcType="REAL"/>
+        <result column="pay_lbmoney" property="payLbmoney" jdbcType="REAL"/>
+        <result column="pay_fulimoney" property="payFulimoney" jdbcType="REAL"/>
+        <result column="pay_allcut" property="payAllcut" jdbcType="REAL"/>
+        <result column="pay_mark" property="payMark" jdbcType="VARCHAR"/>
+        <result column="pay_bz" property="payBz" jdbcType="VARCHAR"/>
+        <result column="pay_bs" property="payBs" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="All">
+  pay_account,pay_emName,pay_dept_id,pay_basemoney,pay_overtime,pay_more,pay_check,pay_absent,	pay_safety	,pay_point,pay_lbmoney,pay_fulimoney,pay_allcut,pay_mark,pay_bz,pay_bs</sql>
+    <sql id="values">
+    pay_account=#{payAccount},pay_emName=#{payEmname},pay_dept_id=#{payDeptId},pay_basemoney=#{payBasemoney},pay_overtime=#{payOvertime},pay_more=#{payMore},pay_check=#{payCheck},pay_absent=#{payAbsent},pay_safety=#{paySafety},pay_point=#{payPoint},pay_lbmoney=#{payLbmoney},pay_fulimoney=#{payFulimoney},pay_allcut=#{payAllcut},pay_mark=#{payMark},pay_bz=#{payBz},pay_bs=#{payBs}
+  </sql>
+    <select id="getAll" resultMap="BaseResultMap">
+        select<include refid="All"/>,pay_id from hr_pay
+    </select>
+    <select id="getByDept" parameterType="int" resultMap="BaseResultMap">
+        select<include refid="All"/>,pay_id from hr_pay where pay_dept_id=#{did} and pay_bz=#{bz}
+    </select>
+    <select id="getByMonth" parameterType="int" resultMap="BaseResultMap">
+        select<include refid="All"/>,pay_id from hr_pay where pay_bz=#{bz}
+    </select>
+    <insert id="setPay" parameterType="com.dingdang.pay.pojo.HrPay">
+        insert into hr_pay (
+        <include refid="All"/>
+        ) values
+        (#{payAccount},#{payEmname},#{payDeptId},#{payBasemoney},#{payOvertime},#{payMore},#{payCheck},#{payAbsent},#{paySafety},#{payPoint},#{payLbmoney},#{payFulimoney},#{payAllcut},#{payMark},#{payBz},#{payBs})
+    </insert>
+    <update id="updatePay" parameterType="com.dingdang.pay.pojo.HrPay">
+        update hr_pay
+        <set>
+            <if test="hrPay.payAccount!=null">pay_account=#{hrPay.payAccount},</if>
+            <if test="hrPay.payEmname!=null">pay_emName=#{hrPay.payEmname},</if>
+            <if test="hrPay.payDeptId!=null">pay_dept_id=#{hrPay.payDeptId},</if>
+            pay_basemoney=#{hrPay.payBasemoney},pay_overtime=#{hrPay.payOvertime},pay_more=#{hrPay.payMore},pay_check=#{hrPay.payCheck},pay_absent=#{hrPay.payAbsent},pay_safety=#{hrPay.paySafety},pay_point=#{hrPay.payPoint},pay_lbmoney=#{hrPay.payLbmoney},pay_fulimoney=#{hrPay.payFulimoney},pay_allcut=#{hrPay.payAllcut},pay_mark=#{hrPay.payMark},
+            <if test="hrPay.payBz!=null">pay_bz=#{hrPay.payBz},</if>
+            <if test="hrPay.payBs!=null">pay_bs=#{hrPay.payBs}</if>
+        </set>
+        where pay_id=#{hrPay.payId}
+    </update>
+    <delete id="deletePay" parameterType="int">
+    delete from hr_pay where pay_id=#{pid}
+  </delete>
+    <select id="findById" parameterType="int" resultMap="BaseResultMap">
+        select<include refid="All"/>,pay_id from hr_pay where pay_id=#{pid}
+    </select>
+</mapper>

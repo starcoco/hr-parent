@@ -1,0 +1,120 @@
+<!-- AUI Framework -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+
+    <meta charset="utf-8"/>
+    <meta name="author" content="order by dede58.com"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title>员工花名册</title>
+    <meta name="description" content=""/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+
+    <!-- Favicons -->
+
+    <link rel="apple-touch-icon-precomposed" sizes="144x144"
+          href="assets/images/icons/apple-touch-icon-144-precomposed.png"/>
+    <link rel="apple-touch-icon-precomposed" sizes="114x114"
+          href="assets/images/icons/apple-touch-icon-114-precomposed.png"/>
+    <link rel="apple-touch-icon-precomposed" sizes="72x72"
+          href="assets/images/icons/apple-touch-icon-72-precomposed.png"/>
+    <link rel="apple-touch-icon-precomposed" href="assets/images/icons/apple-touch-icon-57-precomposed.png"/>
+    <link rel="shortcut icon" href="assets/images/icons/favicon.png"/>
+
+    <!--[if lt IE 9]>
+    <script src="assets/js/minified/core/html5shiv.min.js"></script>
+    <script src="assets/js/minified/core/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Fides Admin CSS Core -->
+
+    <link rel="stylesheet" type="text/css" href="assets/css/minified/aui-production.min.css"/>
+
+    <!-- Theme UI -->
+
+    <link id="layout-theme" rel="stylesheet" type="text/css"
+          href="assets/themes/minified/fides/color-schemes/dark-blue.min.css"/>
+
+    <!-- Fides Admin Responsive -->
+
+    <link rel="stylesheet" type="text/css" href="assets/themes/minified/fides/common.min.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/themes/minified/fides/responsive.min.css"/>
+
+    <!-- Fides Admin JS -->
+
+    <script type="text/javascript" src="assets/js/minified/aui-production.min.js"></script>
+
+    <script>
+        jQuery(window).load(
+            function () {
+
+                var wait_loading = window.setTimeout(function () {
+                        $('#loading').slideUp('fast');
+                        jQuery('body').css('overflow', 'auto');
+                    }, 1000
+                );
+
+            });
+
+    </script>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+</head>
+<body style="overflow: hidden;">
+<div th:replace="head::head"></div>
+
+<div th:replace="left::left"></div>
+<div id="page-content-wrapper" style="top: 53px">
+    <div id="page-title">
+
+        <h3>
+            员工信息
+            <small>
+                按部门显示所有在编员工
+            </small>
+        </h3>
+    </div>
+    <div class="content-box remove-border text-center dashboard-buttons clearfix">
+        <a th:href="@{'/findByDept?deptid='+${dept.dtId}}" class="btn vertical-button hover-blue-alt" th:each="dept:${dept}">
+            <span class="button-content" th:text="${dept.dtName}"></span>
+        </a>
+    </div>
+
+    <div class="example-box">
+        <div class="example-code">
+
+            <table class="table table-condensed">
+                <thead>
+                <tr>
+                    <th></th>
+                    <th><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">工号</font></font></th>
+                    <th><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">姓名</font></font></th>
+                    <th><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">部门</font></font></th>
+                    <th><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">操作</font></font></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="emlist,userStat:${emlist}">
+                    <td th:text="${userStat.index+1}"></td>
+                    <td class="font-bold text-left" th:text="${emlist.emAccout}"></td>
+                    <td><a href="javascript:;" th:text="${emlist.embase.baName}"></a><span th:if="${emlist.emMark} eq '0'">(实习生)</span></td>
+                    <td><div class="label bg-orange" th:text="${emlist.emDept.dtName}"></div></td>
+                    <td>
+                            <a th:href="@{'/findById?emid='+${emlist.emId}}" class="btn small bg-blue-alt tooltip-button" data-placement="top" title="" data-original-title="详情">
+                            <i class="glyph-icon icon-edit"></i>
+                        </a>
+                        <a href="javascript:;" class="btn small bg-red tooltip-button" data-placement="top" title="" data-original-title="删除">
+                            <i class="glyph-icon icon-remove"></i>
+                        </a>
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
+</div>
+</body>
+</html>

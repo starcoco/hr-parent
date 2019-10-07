@@ -1,0 +1,196 @@
+<!-- AUI Framework -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+
+    <meta charset="utf-8"/>
+    <meta name="author" content="order by dede58.com"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title>人力资源管理系统</title>
+    <meta name="description" content=""/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+
+    <!-- Favicons -->
+
+    <link rel="apple-touch-icon-precomposed" sizes="144x144"
+          href="assets/images/icons/apple-touch-icon-144-precomposed.png"/>
+    <link rel="apple-touch-icon-precomposed" sizes="114x114"
+          href="assets/images/icons/apple-touch-icon-114-precomposed.png"/>
+    <link rel="apple-touch-icon-precomposed" sizes="72x72"
+          href="assets/images/icons/apple-touch-icon-72-precomposed.png"/>
+    <link rel="apple-touch-icon-precomposed" href="assets/images/icons/apple-touch-icon-57-precomposed.png"/>
+    <link rel="shortcut icon" href="assets/images/icons/favicon.png"/>
+
+    <!--[if lt IE 9]>
+    <script src="assets/js/minified/core/html5shiv.min.js"></script>
+    <script src="assets/js/minified/core/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Fides Admin CSS Core -->
+
+    <link rel="stylesheet" type="text/css" href="assets/css/minified/aui-production.min.css"/>
+
+    <!-- Theme UI -->
+
+    <link id="layout-theme" rel="stylesheet" type="text/css"
+          href="assets/themes/minified/fides/color-schemes/dark-blue.min.css"/>
+
+    <!-- Fides Admin Responsive -->
+
+    <link rel="stylesheet" type="text/css" href="assets/themes/minified/fides/common.min.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/themes/minified/fides/responsive.min.css"/>
+
+    <!-- Fides Admin JS -->
+
+    <script type="text/javascript" src="assets/js/minified/aui-production.min.js"></script>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+</head>
+<body style="overflow: hidden;">
+<div th:replace="head::head"></div>
+
+<div th:replace="left::left"></div>
+<div id="page-content-wrapper" style="top: 53px">
+    <div id="page-title">
+
+        <h3>
+            休假项目
+
+        </h3>
+    </div>
+    <h3 style="margin-left: 20px;margin-bottom: 20px;">工作日设置</h3>
+    <a href="#" class="btn medium bg-purple" title=""><span class="button-content">确定</span></a>
+    <div>
+        <div class="example-code">
+
+            <table class="table table-striped text-center">
+                <thead>
+                <tr>
+                    <th class="text-center">选项</th>
+                    <th class="text-center">工作日</th>
+                    <th class="text-center">上班时间</th>
+                    <th class="text-center">下班时间</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="choose:${choose}">
+                    <td class="text-center">
+
+                        <input th:if="${choose.coIsornot} eq 1" checked="" style="width: 20px;" type="checkbox" th:date-id="${choose.coId}" th:date-week="${choose.coWeek}" onchange="change(this)">
+                        <input th:if="${choose.coIsornot} eq 0" th:date-id="${choose.coId}" th:date-week="${choose.coWeek}" style="width: 20px;" type="checkbox" onchange="change(this)">
+                    </td>
+                    <td class="font-bold" th:text="${choose.coWeek}"></td>
+                    <td>
+                        <div class="form-input bootstrap-timepicker dropdown">
+                            <!--<input class="timepicker input" id="timepicker_24" name="timepicker_24" type="text" th:value="${choose.coOntime}">-->
+                            <input th:id="'coOntime'+${choose.coId}" class="input" type="time" th:value="${choose.coOntime}">
+                        </div>
+                    </td>
+                    <td>
+                        <div class="form-input bootstrap-timepicker dropdown">
+                            <div class="bootstrap-timepicker-widget dropdown-menu">
+                                <table>
+                                    <tbody>
+                                    <tr>
+                                        <td><a href="#" data-action="incrementHour"><i
+                                                class="glyph-icon icon-chevron-up"></i></a></td>
+                                        <td class="separator">&nbsp;</td>
+                                        <td><a href="#" data-action="incrementMinute"><i
+                                                class="glyph-icon icon-chevron-up"></i></a></td>
+                                        <td class="separator">&nbsp;</td>
+                                        <td class="meridian-column"><a href="#" data-action="toggleMeridian"><i
+                                                class="glyph-icon icon-chevron-up"></i></a></td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="text" name="hour" class="bootstrap-timepicker-hour"
+                                                   maxlength="2"></td>
+                                        <td class="separator"><font style="vertical-align: inherit;"><font
+                                                style="vertical-align: inherit;">：</font></font></td>
+                                        <td><input type="text" name="minute" class="bootstrap-timepicker-minute"
+                                                   maxlength="2"></td>
+                                        <td class="separator">&nbsp;</td>
+                                        <td><input type="text" name="meridian" class="bootstrap-timepicker-meridian"
+                                                   maxlength="2"></td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="#" data-action="decrementHour"><i
+                                                class="glyph-icon icon-chevron-down"></i></a></td>
+                                        <td class="separator"></td>
+                                        <td><a href="#" data-action="decrementMinute"><i
+                                                class="glyph-icon icon-chevron-down"></i></a></td>
+                                        <td class="separator">&nbsp;</td>
+                                        <td><a href="#" data-action="toggleMeridian"><i
+                                                class="glyph-icon icon-chevron-down"></i></a></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!--<input class="timepicker input" id="timepicker_2" name="timepicker_24" type="text">-->
+                            <input th:id="'coOuttime'+${choose.coId}" class="input" type="time" th:value="${choose.coOuttime}">
+                        </div>
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
+    <h3 style="margin-left: 20px;margin-bottom: 20px;">例外情况</h3>
+    <div>
+        <div class="example-code">
+
+            <table class="table table-striped text-center">
+                <thead>
+                <tr>
+                    <th class="text-center">日期</th>
+                    <th class="text-center">上班时间</th>
+                    <th class="text-center">下班时间</th>
+                    <th class="text-center">类型</th>
+                    <th class="text-center">备注</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="text-center"><input style="width: 20px;" type="checkbox"></td>
+                    <td class="font-bold">周一</td>
+                    <td>
+
+                    </td>
+                    <td>
+
+                    </td>
+                    <td>
+
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
+</div>
+<script>
+
+    function change(date){
+        var isflag =  $(date).attr("checked");
+        var id =  $(date).attr("date-id")
+        var week =  $(date).attr("date-week")
+
+        var coOntime = $("#coOntime"+id).val()
+        var coOuttime = $("#coOuttime"+id).val()
+        alert(coOntime)
+        var month = $("#month").val()
+        $.post("/updateByChooseId", {'coId': id, 'check': isflag,'coWeek':week,'coOntime':coOntime,'coOuttime':coOuttime,'coType':'0'}, function (data) {
+            if (data.code == 200) {
+                alert("成功")
+            }
+        });
+    }
+
+</script>
+</body>
+</html>

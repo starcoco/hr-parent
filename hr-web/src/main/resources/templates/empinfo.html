@@ -1,0 +1,171 @@
+<!-- AUI Framework -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+	<head>
+
+		<meta charset="utf-8" />
+		<meta name="author" content="order by dede58.com" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<title>个人信息</title>
+		<meta name="description" content="" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+		<!-- Favicons -->
+
+		<link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/images/icons/apple-touch-icon-144-precomposed.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/images/icons/apple-touch-icon-114-precomposed.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/images/icons/apple-touch-icon-72-precomposed.png" />
+		<link rel="apple-touch-icon-precomposed" href="assets/images/icons/apple-touch-icon-57-precomposed.png" />
+		<link rel="shortcut icon" href="assets/images/icons/favicon.png" />
+
+		<!--[if lt IE 9]>
+          <script src="assets/js/minified/core/html5shiv.min.js"></script>
+          <script src="assets/js/minified/core/respond.min.js"></script>
+        <![endif]-->
+
+		<!-- Fides Admin CSS Core -->
+
+		<link rel="stylesheet" type="text/css" href="assets/css/minified/aui-production.min.css" />
+
+		<!-- Theme UI -->
+
+		<link id="layout-theme" rel="stylesheet" type="text/css" href="assets/themes/minified/fides/color-schemes/dark-blue.min.css" />
+
+		<!-- Fides Admin Responsive -->
+
+		<link rel="stylesheet" type="text/css" href="assets/themes/minified/fides/common.min.css" />
+		<link rel="stylesheet" type="text/css" href="assets/themes/minified/fides/responsive.min.css" />
+
+		<!-- Fides Admin JS -->
+
+		<script type="text/javascript" src="assets/js/minified/aui-production.min.js"></script>
+
+		<script>
+			jQuery(window).load(
+                function(){
+
+                    var wait_loading = window.setTimeout( function(){
+                      $('#loading').slideUp('fast');
+                      jQuery('body').css('overflow','auto');
+                    },1000
+                    );
+
+                });
+
+        </script>
+
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	</head>
+	<body style="overflow: hidden;">
+	<div th:replace="head::head"></div>
+
+	<div th:replace="left::left"></div>
+	<div id="page-content-wrapper" style="top: 53px">
+		<div class="form-row">
+			<div class="form-label col-md-2">
+				<label for="">工号</label>
+			</div>
+			<div class="form-input col-md-6">
+				<span placeholder=".col-md-6" type="text" th:text="${eminfo.emAccout}" >
+			</div>
+		</div>
+		<div class="form-row">
+			<div class="form-label col-md-2">
+				<label for="">姓名</label>
+			</div>
+			<div class="form-input col-md-6">
+				<span placeholder=".col-md-6" th:text="${eminfo.embase.baName}"/>
+			</div>
+		</div>
+		<div class="form-row">
+			<div class="form-label col-md-2">
+				<label for="">入职时间</label>
+			</div>
+			<div class="form-input col-md-6">
+				<span placeholder=".col-md-6" type="text" th:text="${eminfo.emStartime}" disabled="disabled"/>
+			</div>
+		</div>
+		<div class="form-row">
+			<div class="form-label col-md-2">
+				<label for="">性别</label>
+			</div>
+			<div class="form-input col-md-6">
+				<span placeholder=".col-md-6" type="text" th:text="${eminfo.embase.baSex}"/>
+			</div>
+		</div>
+		<div class="form-row">
+			<div class="form-label col-md-2">
+				<label for="">年龄</label>
+			</div>
+			<div class="form-input col-md-6">
+				<span placeholder=".col-md-6" type="text" th:text="${eminfo.embase.baAge}"/>
+			</div>
+		</div>
+		<div class="form-row">
+			<div class="form-label col-md-2">
+				<label for="">身份证号</label>
+			</div>
+			<div class="form-input col-md-6">
+				<span placeholder=".col-md-6" type="text" th:text="${eminfo.embase.baIdcard}"/>
+			</div>
+		</div>
+		<div class="form-row">
+			<div class="form-label col-md-2">
+				<label for="">出生日期</label>
+			</div>
+			<div class="form-input col-md-6">
+				<span placeholder=".col-md-6" type="text" th:text="${eminfo.embase.baBirth}"/>
+			</div>
+		</div>
+		<div class="form-row">
+			<div class="form-label col-md-2">
+				<label for="">地区</label>
+			</div>
+			<div class="form-input col-md-6">
+				<span placeholder=".col-md-6" type="text" th:text="${eminfo.embase.baHome}"/>
+			</div>
+		</div>
+		<div class="form-row">
+			<div class="form-label col-md-2">
+				<label for="">婚姻状况</label>
+			</div>
+			<div class="form-input col-md-6">
+				<span placeholder=".col-md-6" type="text" th:text="${eminfo.embase.baMarriage}"/>
+			</div>
+		</div>
+		<div class="form-row">
+			<div class="form-label col-md-2">
+				<label for="">政治面貌</label>
+			</div>
+			<div class="form-input col-md-6">
+				<span placeholder=".col-md-6" type="text" th:text="${eminfo.embase.baVisage}"/>
+			</div>
+		</div>
+		<div class="form-row">
+			<div class="form-label col-md-2">
+				<label for="">联系方式</label>
+			</div>
+			<div class="form-input col-md-6">
+				<span placeholder=".col-md-6" type="text" th:text="${eminfo.embase.baTel}"/>
+			</div>
+		</div>
+		<div class="form-row">
+			<div class="form-label col-md-2">
+				<label for="">家庭住址</label>
+			</div>
+			<div class="form-input col-md-6">
+				<span placeholder=".col-md-6" type="text" th:text="${eminfo.embase.baAddress}"/>
+			</div>
+		</div>
+		<div class="form-row">
+			<div class="form-label col-md-2">
+				<label for="">最高学历</label>
+			</div>
+			<div class="form-input col-md-6">
+				<span placeholder=".col-md-6" type="text" th:text="${eminfo.embase.baCulture}"/>
+			</div>
+		</div>
+
+	</div>
+	</body>
+</html>

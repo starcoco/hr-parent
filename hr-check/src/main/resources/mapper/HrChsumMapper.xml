@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dingdang.check.mapper.HrChsumMapper" >
+  <resultMap id="BaseResultMap" type="com.dingdang.check.pojo.HrChsum" >
+    <id column="s_id" property="sId" jdbcType="INTEGER" />
+    <result column="s_account" property="sAccount" jdbcType="VARCHAR" />
+    <result column="s_name" property="sName" jdbcType="VARCHAR" />
+    <result column="s_dept_id" property="sDeptId" jdbcType="INTEGER" />
+    <result column="s_date" property="sDate" jdbcType="INTEGER" />
+    <result column="s_truedate" property="sTruedate" jdbcType="INTEGER" />
+    <result column="s_chidao" property="sChidao" jdbcType="INTEGER" />
+    <result column="s_zaotui" property="sZaotui" jdbcType="INTEGER" />
+    <result column="s_kuang" property="sKuang" jdbcType="REAL" />
+    <result column="s_qing" property="sQing" jdbcType="REAL" />
+    <result column="s_bu" property="sBu" jdbcType="INTEGER" />
+    <result column="s_bz" property="sBz" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    s_id, s_account, s_name, s_dept_id, s_date, s_truedate, s_chidao, s_zaotui, s_kuang, 
+    s_qing, s_bu, s_bz
+  </sql>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from hr_chsum
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from hr_chsum
+    where s_id = #{sId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from hr_chsum
+    where s_id = #{sId,jdbcType=INTEGER}
+  </delete>
+
+  <insert id="insert" parameterType="com.dingdang.check.pojo.HrChsum" >
+    insert into hr_chsum (s_id, s_account, s_name, 
+      s_dept_id, s_date, s_truedate, 
+      s_chidao, s_zaotui, s_kuang, 
+      s_qing, s_bu, s_bz)
+    values (#{sId,jdbcType=INTEGER}, #{sAccount,jdbcType=VARCHAR}, #{sName,jdbcType=VARCHAR}, 
+      #{sDeptId,jdbcType=INTEGER}, #{sDate,jdbcType=INTEGER}, #{sTruedate,jdbcType=INTEGER}, 
+      #{sChidao,jdbcType=INTEGER}, #{sZaotui,jdbcType=INTEGER}, #{sKuang,jdbcType=REAL}, 
+      #{sQing,jdbcType=REAL}, #{sBu,jdbcType=INTEGER}, #{sBz,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.dingdang.check.pojo.HrChsum" >
+    update hr_chsum
+    set s_account = #{sAccount,jdbcType=VARCHAR},
+      s_name = #{sName,jdbcType=VARCHAR},
+      s_dept_id = #{sDeptId,jdbcType=INTEGER},
+      s_date = #{sDate,jdbcType=INTEGER},
+      s_truedate = #{sTruedate,jdbcType=INTEGER},
+      s_chidao = #{sChidao,jdbcType=INTEGER},
+      s_zaotui = #{sZaotui,jdbcType=INTEGER},
+      s_kuang = #{sKuang,jdbcType=REAL},
+      s_qing = #{sQing,jdbcType=REAL},
+      s_bu = #{sBu,jdbcType=INTEGER},
+      s_bz = #{sBz,jdbcType=VARCHAR}
+    where s_id = #{sId,jdbcType=INTEGER}
+  </update>
+</mapper>

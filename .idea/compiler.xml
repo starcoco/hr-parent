@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="hr-check" />
+        <module name="hr-common" />
+        <module name="hr-employee" />
+        <module name="hr-eureka-server" />
+        <module name="hr-login" />
+        <module name="hr-pay" />
+        <module name="hr-web" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="hr-director" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="hr-check" options="-parameters" />
+      <module name="hr-common" options="-parameters" />
+      <module name="hr-director" options="-parameters" />
+      <module name="hr-employee" options="-parameters" />
+      <module name="hr-eureka-server" options="-parameters" />
+      <module name="hr-login" options="-parameters" />
+      <module name="hr-pay" options="-parameters" />
+      <module name="hr-web" options="-parameters" />
+    </option>
+  </component>
+</project>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dingdang.check.mapper.HrChooseMapper" >
+  <resultMap id="BaseResultMap" type="com.dingdang.check.pojo.HrChoose" >
+    <id column="co_id" property="coId" jdbcType="INTEGER" />
+    <result column="co_isornot" property="coIsornot" jdbcType="INTEGER" />
+    <result column="co_week" property="coWeek" jdbcType="VARCHAR" />
+    <result column="co_ontime" property="coOntime" jdbcType="TIME" />
+    <result column="co_outtime" property="coOuttime" jdbcType="TIME" />
+    <result column="co_date" property="coDate" jdbcType="DATE" />
+    <result column="co_type" property="coType" jdbcType="VARCHAR" />
+    <result column="co_bz" property="coBz" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    co_id, co_isornot, co_week, co_ontime, co_outtime, co_date, co_type, co_bz
+  </sql>
+  <select id="selectByType" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from hr_choose
+    where co_type ="0"
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from hr_choose
+    where co_type = #{coId,jdbcType=INTEGER}
+  </delete>
+
+  <insert id="insert" parameterType="com.dingdang.check.pojo.HrChoose" >
+    insert into hr_choose (co_ontime, co_outtime, co_date,
+      co_type, co_bz)
+    values (#{coOntime,jdbcType=TIME}, #{coOuttime,jdbcType=TIME}, #{coDate,jdbcType=DATE},
+      #{coType,jdbcType=VARCHAR}, #{coBz,jdbcType=VARCHAR})
+  </insert>
+
+  <update id="updateByPrimaryKey" parameterType="com.dingdang.check.pojo.HrChoose" >
+    update hr_choose
+    set co_isornot = #{coIsornot,jdbcType=INTEGER},
+      co_week = #{coWeek,jdbcType=VARCHAR},
+      co_ontime = #{coOntime,jdbcType=TIME},
+      co_outtime = #{coOuttime,jdbcType=TIME},
+      co_date = #{coDate,jdbcType=DATE},
+      co_type = #{coType,jdbcType=VARCHAR},
+      co_bz = #{coBz,jdbcType=VARCHAR}
+    where co_id = #{coId,jdbcType=INTEGER}
+  </update>
+</mapper>

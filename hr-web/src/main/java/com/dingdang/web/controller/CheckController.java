@@ -37,7 +37,7 @@ public class CheckController {
         }else {
             record.setCoIsornot(1);
         }
-        System.out.println("c::" + check);
+        System.out.println("c ::" + check);
         checkFeign.updatechoose(record);
         return "redirect:selectByType";
     }
